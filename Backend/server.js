@@ -9,7 +9,7 @@ connectDB();
 app.use(cors());
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "http://localhost:5173", "https://url-shortener-service-app.netlify.app/",
     methods: ["GET", "POST"],
 }));
 
