@@ -1,4 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://Sasha:Waszajsasha1@sashawf.j7d1wjx.mongodb.net/?retryWrites=true&w=majority&appName=SashaWF",
+    "mongoURI": "mongodb+srv://Sasha:Waszajsasha1@sashawf.j7d1wjx.mongodb.net/",
     "baseUrl": "http://localhost:8080"
 }
