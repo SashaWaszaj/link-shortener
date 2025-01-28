@@ -12,7 +12,7 @@ app.use(cors());
 
 // Configuración de CORS
 const allowedOrigins = [
-    'https://url-shortener-service-app.netlify.app', // Frontend en producción
+    'https://url-shortener-service-app.netlify.app/', // Frontend en producción
     'http://localhost:5173', // Frontend en desarrollo
 ];
 
