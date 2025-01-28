@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import UrlShortenerGray2 from "../img/UrlShortenerGray2.PNG";
-import UrlShortenerWhite2 from "../img/UrlShortenerWhite2.PNG";
+import UrlShortenerGray2 from "/img/UrlShortenerGray2.PNG";
+import UrlShortenerWhite2 from "/img/UrlShortenerWhite2.PNG";
 import "../styles/NavBar.css";
 
 const NavBar = () => {
