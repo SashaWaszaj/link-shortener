@@ -3,7 +3,6 @@ const router = express.Router();
 const validUrl = require('valid-url');
 const shortid = require('shortid');
 const config = require('../config/config');
-
 const Url = require('../models/url.model');
 
 router.post('/shorten', async (req, res) => {
