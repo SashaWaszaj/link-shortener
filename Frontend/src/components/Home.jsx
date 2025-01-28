@@ -22,7 +22,7 @@ const Home = () => {
 
         setIsLoading(true);
         try {
-            const response = await axios.post("http://localhost:8080/api/url/shorten", { longUrl: url.longUrl });
+            const response = await axios.post("https://link-shortener-ansq.onrender.com/api/url/shorten", { longUrl: url.longUrl });
             setShortUrl(response.data.shortUrl);
             setError("");
         } catch (err) {
