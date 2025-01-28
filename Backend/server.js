@@ -1,12 +1,9 @@
 const express = require("express");
 const connectDB = require('./config/db');
 const cors = require("cors");
-const app = express();
-const config = require('./config/config');
-const baseUrl = config.get('baseUrl');
 require('dotenv').config();
 
-connectDB();
+const app = express();
 
 // Configuración de CORS
 const allowedOrigins = [
@@ -20,11 +17,15 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
-app.use(express.json({extended: false}));
+app.use(express.json({ extended: false }));
+
+connectDB();
 
 app.use('/', require('./routes/index'));
 app.use('/api/url', require('./routes/url'));
 
+// Usa la variable de entorno directamente
+const baseUrl = process.env.BASE_URL;
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => console.log(`Server running at port ${PORT}`));
