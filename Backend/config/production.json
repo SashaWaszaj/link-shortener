@@ -1,0 +1,5 @@
+{
+    "mongoURI": "mongodb+srv://your-db-uri",
+    "baseUrl": "https://url-shortener-service-app.netlify.app/"
+  }
+  
