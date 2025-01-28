@@ -10,9 +10,16 @@ connectDB();
 
 app.use(cors());
 
+// Configuración de CORS
+const allowedOrigins = [
+    'https://url-shortener-service-app.netlify.app', // Frontend en producción
+    'http://localhost:5173', // Frontend en desarrollo
+];
+
 app.use(cors({
-    origin: ["http://localhost:5173", "https://url-shortener-service-app.netlify.app/"],
-    methods: ["GET", "POST"],
+    origin: allowedOrigins,  // Permitir solo estos orígenes
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 app.use(express.json({extended: false}));
