@@ -1,48 +1,43 @@
 const express = require("express");
 const connectDB = require('./config/db');
 const cors = require("cors");
-const config = require('config');
 require('dotenv').config();
 
 const app = express();
+connectDB();
 
 // Lista de dominios permitidos
 const allowedOrigins = [
-    'https://url-shortener-service-app.netlify.app/', // Frontend en producción
+    'https://url-shortener-service-app.netlify.app', // Frontend en producción
     'http://localhost:5173', // Frontend en desarrollo
 ];
 
-// Configuración de CORS
-app.use(cors({
-    origin: (origin, callback) => {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    methods: ['GET', 'POST'], // Métodos HTTP permitidos
-    allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
-}));
-
-app.use((err, req, res, next) => {
-    if (err instanceof Error && err.message === 'Not allowed by CORS') {
-        return res.status(403).json({ error: 'CORS policy does not allow access from this origin.' });
+// Middleware CORS
+app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+        res.setHeader('Access-Control-Allow-Credentials', 'true');
     }
-    next(err);
+
+    // Manejar solicitudes OPTIONS
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(204);
+    }
+
+    next();
 });
 
 app.use(express.json({ extended: false }));
 
-connectDB();
-
 app.use('/', require('./routes/index'));
 app.use('/api/url', require('./routes/url'));
 
-// Usar config.get() correctamente
-const baseUrl = config.get('baseUrl');
-const PORT = process.env.PORT || config.get('port');
+const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => console.log(`Server running at port ${PORT}`));
+
 
 
