@@ -44,13 +44,39 @@
 
 @media (max-width: 768px) {
   .nav-container {
-      flex-direction: column; 
-      align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem;
+    width: 100%; /* Aumentamos el padding para más espacio */
+  }
+
+  .logo-img-gray {
+    height: 70px; /* Logo más pequeño en pantallas móviles */
   }
 
   .list {
-      flex-direction: column;
-      gap: 1rem; 
-      margin-top: 0.5rem;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+    align-items: flex-start; /* Alineación de los elementos a la izquierda */
+  }
+
+  .link-list a {
+    font-size: 1.2rem; /* Aumentamos el tamaño de texto para mejorar la legibilidad */
+  }
+}
+
+/* Estilos adicionales para pantallas muy pequeñas (móviles en apaisado o menos de 480px) */
+@media (max-width: 480px) {
+  .logo-img-gray {
+    height: 60px; /* Logo aún más pequeño */
+  }
+
+  .link-list a {
+    font-size: 1rem; /* Reducir el tamaño del texto para pantallas muy pequeñas */
+  }
+
+  .nav-container {
+    padding: 0.8rem; /* Ajustamos el padding para que haya un poco de espacio */
   }
 }

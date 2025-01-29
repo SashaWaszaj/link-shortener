@@ -28,8 +28,6 @@ const NavBar = () => {
             const newLogo = theme === "dark" ? UrlShortenerGray2 : UrlShortenerWhite2;
             setLogoSrc(newLogo);
           }, [theme]);
-    
-
 
     return(
             <footer className="footer">

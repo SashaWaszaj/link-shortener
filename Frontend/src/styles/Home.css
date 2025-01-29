@@ -120,5 +120,9 @@
     margin: 0;
     margin-bottom: 20px;
 }
-
+@media (max-width: 768px) {
+    .input{
+        margin: 30px
+    }
+}
 
