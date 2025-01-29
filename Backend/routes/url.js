@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const validUrl = require('valid-url');
 const shortid = require('shortid');
-const config = require('../config/config');
+require('dotenv').config();
 const Url = require('../models/url.model');
 
 router.post('/shorten', async (req, res) => {
     const { longUrl } = req.body;
-    const baseUrl = config.get('baseUrl');
+    const baseUrl = process.env.BASE_URL || "http://localhost:8080";
 
     //Check Base Url
     if(!validUrl.isUri(baseUrl)){

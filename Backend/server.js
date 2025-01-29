@@ -6,6 +6,8 @@ require('dotenv').config();
 const app = express();
 connectDB();
 
+const baseUrl = process.env.BASE_URL || "http://localhost:8080";
+
 // Lista de dominios permitidos
 const allowedOrigins = [
     'https://url-shortener-service-app.netlify.app', // Frontend en producción
