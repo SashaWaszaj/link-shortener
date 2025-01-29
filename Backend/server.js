@@ -1,6 +1,7 @@
 const express = require("express");
 const connectDB = require('./config/db');
 const cors = require("cors");
+const config = require('config');
 require('dotenv').config();
 
 const app = express();
@@ -24,8 +25,10 @@ connectDB();
 app.use('/', require('./routes/index'));
 app.use('/api/url', require('./routes/url'));
 
-// Usa la variable de entorno directamente
-const baseUrl = process.env.BASE_URL;
-const PORT = process.env.PORT || 8080;
+// Usar config.get() correctamente
+const baseUrl = config.get('baseUrl');
+const PORT = process.env.PORT || config.get('port');
 
 app.listen(PORT, () => console.log(`Server running at port ${PORT}`));
+
+

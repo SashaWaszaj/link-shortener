@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://url-shortener-service-app.netlify.app"
+  "mongoURI": "mongodb+srv://Sasha:Waszajsasha1@sashawf.j7d1wjx.mongodb.net/",
+  "baseUrl": "https://link-shortener-ansq.onrender.com"
 }
-
   
