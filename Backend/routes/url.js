@@ -7,7 +7,7 @@ const Url = require('../models/url.model');
 
 router.post('/shorten', async (req, res) => {
     const { longUrl } = req.body;
-    const baseUrl = process.env.BASE_URL || "http://localhost:8080";
+    const baseUrl = "https://link-shortener-ansq.onrender.com";
 
     //Check Base Url
     if(!validUrl.isUri(baseUrl)){
