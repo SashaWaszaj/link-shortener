@@ -5,26 +5,27 @@ const shortid = require('shortid');
 require('dotenv').config();
 const Url = require('../models/url.model');
 
+const baseUrl = process.env.BASE_URL || "http://localhost:8080"; // Usa la URL de producción
+
 router.post('/shorten', async (req, res) => {
     const { longUrl } = req.body;
-    const baseUrl = "https://link-shortener-ansq.onrender.com";
 
-    //Check Base Url
-    if(!validUrl.isUri(baseUrl)){
+    // Check Base Url
+    if (!validUrl.isUri(baseUrl)) {
         return res.status(401).json('Invalid base url');
     }
 
-    //Create url code
+    // Create url code
     const urlCode = shortid.generate();
 
-    //Check long url
-    if (validUrl.isUri(longUrl)){
+    // Check long url
+    if (validUrl.isUri(longUrl)) {
         try {
-            let url = await Url.findOne({longUrl});
-            if (url){
+            let url = await Url.findOne({ longUrl });
+            if (url) {
                 res.json(url);
-            }else{
-                const shortUrl = baseUrl + '/' + urlCode;
+            } else {
+                const shortUrl = `${baseUrl}/${urlCode}`; // Construye la URL correctamente
 
                 url = new Url({
                     longUrl,
@@ -36,12 +37,12 @@ router.post('/shorten', async (req, res) => {
                 res.json(url);
             }
         } catch (error) {
-            console.error(error)
-            res.status(500).json('server error');
+            console.error(error);
+            res.status(500).json('Server error');
         }
-    }else {
-        res.status(401).json('invalid long url');
+    } else {
+        res.status(401).json('Invalid long url');
     }
-})
+});
 
 module.exports = router;
